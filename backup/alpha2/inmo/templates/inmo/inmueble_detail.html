@@ -1,0 +1,12 @@
+{% extends 'inmo/base.html' %}
+
+{% block content %}
+<h1>Detalles del Inmueble ID: {{inmueble.pk}}</h1>
+            {% if inmueble.fecha_creacion %}
+                    <p>Creado: {{ inmueble.fecha_creacion }}</p>
+            {% endif %}
+            <p>Titulo: {{ inmueble.titulo }}</p>
+            <p>Descripcion: {{ inmueble.descripcion|linebreaksbr }}</p>
+        </div>
+<a href={% url 'home' %}>Back to Home</a>
+{% endblock %}
