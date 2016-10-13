@@ -1,0 +1,31 @@
+.page-header {
+        background-color: #ff1100;
+        margin-top: 0;
+        padding: 10px 10px 10px 30px;
+	}
+
+body {
+        padding-left: 0px;
+    }
+
+h1 a {
+        color: #005500;
+    }
+
+
+
+#map { 
+    width: 100%;
+    height: 300px;
+    box-shadow: 5px 5px 5px #888;
+ }
+
+
+.leaflet-container {  /* all maps */
+        width:  600px;
+        height: 400px;
+    }
+
+#specialbigmap {
+        height: 800px;
+    }

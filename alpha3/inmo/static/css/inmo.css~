@@ -11,3 +11,11 @@ body {
 h1 a {
         color: #005500;
     }
+
+
+
+  #map { 
+    width: 100%;
+    height: 300px;
+    box-shadow: 5px 5px 5px #888;
+ }

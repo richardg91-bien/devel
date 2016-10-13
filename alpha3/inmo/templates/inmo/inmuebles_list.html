@@ -1,0 +1,18 @@
+{% extends 'inmo/base.html' %}
+
+{% block content %}
+
+	<h1>Lista de Inmuebles</h1>
+	{% for inmueble in inmuebles %}
+	<div>
+		<p>published: {{ inmueble.fecha_creacion }}</p>
+		<p><b>{{ inmueble.titulo }}</b></p>
+
+	{% url 'inmueble_detail' inmueble_id=inmueble.pk as url_detail %}
+	<a href="{{ url_detail }}">Ver Detalles</a>
+	<p> ---------- </p>
+	</div>
+	{% endfor %}
+#####
+<a href={% url 'alta_inmueble' %}>Alta de Inmueble</a>
+{% endblock content %}
