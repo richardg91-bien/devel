@@ -1,0 +1,20 @@
+<html>
+    <head
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    </head>
+
+    <body>
+	<div>
+		<h1><a href="/">Broker21</a></h1>
+	</div>
+	{% for inmueble in inmuebles %}
+	<div>
+		<p>published: {{ inmueble.fecha_creacion }}</p>
+		<h1><a href="">{{ inmueble.titulo }}</a></h1>
+		<p>{{ inmueble.text|linebreaksbr }}</p>
+	</div>
+	{% endfor %}
+    </body>
+
+</html>

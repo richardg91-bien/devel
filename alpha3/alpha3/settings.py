@@ -133,9 +133,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Redirect when login is correct.
-LOGIN_REDIRECT_URL = "/inmueble/listado/"
+LOGIN_REDIRECT_URL = "/"
 # Redirect when login is not correct.
-LOGIN_URL = '/'
+LOGIN_URL = '/login'
 
 LEAFLET_CONFIG = {
 	'DEFAULT_CENTER': (-31.414560, -64.187680),

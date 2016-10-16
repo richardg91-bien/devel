@@ -1,0 +1,34 @@
+[
+  {
+    "model": "inmo.ciudad",
+    "pk": 1,
+    "fields": {
+      "nombre": "Cordoba",
+      "pais": "1"
+    }
+  },
+  {
+    "model": "inmo.ciudad",
+    "pk": 2,
+    "fields": {
+      "nombre": "Mendoza",
+      "pais": "1"
+    }
+  },
+  {
+    "model": "inmo.ciudad",
+    "pk": 3,
+    "fields": {
+      "nombre": "Neuquen",
+      "pais": "1"
+    }
+  },
+  {
+    "model": "inmo.ciudad",
+    "pk": 4,
+    "fields": {
+      "nombre": "Buenos Aires",
+      "pais": "1"
+    }
+  }
+]

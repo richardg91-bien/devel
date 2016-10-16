@@ -1,0 +1,34 @@
+[
+  {
+    "model": "inmo.barrio",
+    "pk": 1,
+    "fields": {
+      "nombre": "San Vicente",
+      "ciudad": "1"
+    }
+  },
+  {
+    "model": "inmo.barrio",
+    "pk": 2,
+    "fields": {
+      "nombre": "Juniors",
+      "ciudad": "1"
+    }
+  },
+  {
+    "model": "inmo.barrio",
+    "pk": 3,
+    "fields": {
+      "nombre": "General Paz",
+      "ciudad": "1"
+    }
+  },
+  {
+    "model": "inmo.barrio",
+    "pk": 4,
+    "fields": {
+      "nombre": "Alto Alberdi",
+      "ciudad": "1"
+    }
+  }
+]

@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form method="post" action="./">
+<form method="post" action="./buscador">
     {% csrf_token %}
     <table>
         {{ form }}
@@ -25,8 +25,7 @@
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         map = new google.maps.Map($('.map')[0], mapOptions);
-	
-	    var marker = new google.maps.Marker({
+	var marker = new google.maps.Marker({
             position: latlng,
             map: map,
 	    animation: google.maps.Animation.BOUNCE,
@@ -44,26 +43,9 @@
 });
     
 
-function geoFindMe() {
-  var output = document.getElementById("out");
-
-  if (!navigator.geolocation){
-    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
-    return;
-  }
-
-  function success(position) {
-    var latitude  = position.coords.latitude;
-    var longitude = position.coords.longitude;
-
-}
-}
-geoFindMe();
 
 </script>
 
-<p><button onclick="geoFindMe()">Show my location</button></p>
-<div id="out"></div>
 <div class="map" style="width: 800px; height: 400px;"></div>
 
 {% if inmuebles %}

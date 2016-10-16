@@ -1,0 +1,18 @@
+[
+  {
+    "model": "inmo.pais",
+    "pk": 1,
+    "fields": {
+      "nombre": "Argentina"
+    }
+  },
+
+  {
+    "model": "inmo.pais",
+    "pk": 2,
+    "fields": {
+      "nombre": "Brazil"
+    }
+  }
+
+]

@@ -1,8 +1,10 @@
 from django.db import models
 from django.utils import timezone
-from djgeojson.fields import PointField
 from django.contrib.gis.db import models as gis_models
 from django.contrib.gis import geos
+from geopy.geocoders import GoogleV3
+
+
 
 # Create your models here.
 class Inmueble(models.Model):
@@ -19,8 +21,7 @@ class Inmueble(models.Model):
     fecha_publicacion = models.DateTimeField(blank=True, null=True)
     direccion = models.CharField(max_length=150, blank=False)
     ciudad = models.CharField(max_length=150, blank=False)
-    location = gis_models.PointField(u"longitude/latitude", geography=True, blank=True, null=True)
-    
+    location = gis_models.PointField(u"longitude/latitude", geography=True, blank=True, null=True)    
     gis = gis_models.GeoManager()
     objects = models.Manager()
 
@@ -32,3 +33,17 @@ class Inmueble(models.Model):
     def __str__(self):
         return self.titulo
 
+
+    def save(self, **kwargs):
+        if not self.location:
+            address = u'%s %s' % (self.ciudad, self.direccion)
+            address = address.encode('utf-8')
+            geocoder = GoogleV3()
+            try:
+                _, latlon = geocoder.geocode(address)
+            except (URLError, GQueryError, ValueError):
+                pass
+            else:
+                point = "POINT(%s %s)" % (latlon[1], latlon[0])
+                self.location = geos.fromstr(point)
+        super(Shop, self).save()
