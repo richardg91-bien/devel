@@ -1,35 +1,55 @@
-from django.db import models
 from django.utils import timezone
-from django.contrib.gis.db import models as gis_models
+from django.contrib.gis.db import models
 from django.contrib.gis import geos
 from geopy import geocoders
 from geopy.geocoders import GoogleV3
 from geopy.geocoders.googlev3 import GeocoderQueryError
 from urllib2 import URLError
+from autoslug import AutoSlugField
+from django_extensions.db import fields as ext_fields
 
 # Create your models here.
 
 class Pais(models.Model):
     nombre = models.CharField(max_length=150)
+    slug = AutoSlugField(populate_from='nombre', max_length=255)
+    uuid = ext_fields.UUIDField(auto=True)
+    area = models.PolygonField(null=True, blank=True)
+    objects = models.GeoManager()
 
     def __unicode__(self):
         return self.nombre
+
+    class Meta:
+        verbose_name_plural = "Paises"
 
 class Ciudad(models.Model):
     nombre = models.CharField(max_length=150)
+    slug = AutoSlugField(populate_from='nombre', max_length=255)
     pais = models.ForeignKey(Pais, on_delete=models.CASCADE)
+    uuid = ext_fields.UUIDField(auto=True)
+    area = models.PolygonField(null=True, blank=True)
+    objects = models.GeoManager()
 
     def __unicode__(self):
         return self.nombre
 
+    class Meta:
+        verbose_name_plural = "Ciudades"
 
 class Barrio(models.Model):
     nombre = models.CharField(max_length=150)
+    slug = AutoSlugField(populate_from='nombre', max_length=255)
     ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE)
+    uuid = ext_fields.UUIDField(auto=True)
+    area = models.PolygonField(null=True, blank=True)
+    objects = models.GeoManager()
 
     def __unicode__(self):
         return self.nombre
 
+    class Meta:
+        verbose_name_plural = "Barrios"
 
 
 class Inmueble(models.Model):
@@ -45,13 +65,14 @@ class Inmueble(models.Model):
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_publicacion = models.DateTimeField(blank=True, null=True)
     direccion = models.CharField(max_length=150, blank=False)
-    location = gis_models.PointField(u"longitude/latitude", geography=True, blank=True, null=True)    
-    gis = gis_models.GeoManager()
+    location = models.PointField(u"longitude/latitude", geography=True, blank=True, null=True)    
+    gis = models.GeoManager()
     objects = models.Manager()
     pais = models.ForeignKey(Pais, on_delete=models.CASCADE)
     ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE)
     barrio = models.ForeignKey(Barrio, on_delete=models.CASCADE)
-
+    slug = AutoSlugField(populate_from='titulo', max_length=255)
+    uuid = ext_fields.UUIDField(auto=True)
 
     def publish(self):
         self.fecha_publicacion = timezone.now()
@@ -75,6 +96,8 @@ class Inmueble(models.Model):
                 self.location = geos.fromstr(point)
         super(Inmueble, self).save()
 
+    class Meta:
+        verbose_name_plural = "Inmuebles"
 
 class Cliente(models.Model):
     nombre = models.CharField(max_length=150)
@@ -82,4 +105,17 @@ class Cliente(models.Model):
     email = models.CharField(max_length=150)
     direccion = models.CharField(max_length=150)
 
+    class Meta:
+        verbose_name_plural = "Clientes"
 
+class Mensaje(models.Model):
+    fecha_envio = models.DateTimeField(auto_now_add=True)
+    fecha_respuesta = models.DateTimeField(blank=True, null=True)
+    respondio = models.ForeignKey('auth.User')
+    titulo = models.TextField(null=True, blank=True)
+    cuerpo = models.TextField(null=True, blank=True)
+    inmueble = models.ForeignKey(Inmueble)
+    
+
+    class Meta:
+        verbose_name_plural = "Mensajes"

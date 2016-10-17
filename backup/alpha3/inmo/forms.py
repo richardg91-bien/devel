@@ -26,3 +26,4 @@ class SignUpForm(ModelForm):
 
 class DireccionForm(forms.Form):
     direccion = forms.CharField()
+    ciudad = forms.CharField()

@@ -16,7 +16,7 @@ from django.contrib.gis import geos
 from django.db import models
 from geopy import geocoders
 from geopy.geocoders import GoogleV3
-
+from geopy.geocoders.googlev3 import GeocoderQueryError
 
 # Create your views here.
 
@@ -81,11 +81,11 @@ def geocode_address(direccion):
     direccion = direccion.encode('utf-8')
     geocoder = GoogleV3()
     try:
-        _, latlon = geocoder.geocode(direccion)
-    except (URLError, GQueryError, ValueError):
-        return None
+	_,latlon = geocoder.geocode(direccion)
+    except (URLError, GeocoderQueryError, ValueError):
+	return none
     else:
-        return latlon
+	return latlon
 
 def get_inmuebles(longitude, latitude):
     current_point = geos.fromstr("POINT(%s %s)" % (longitude, latitude))
@@ -104,8 +104,8 @@ def buscador(request):
     if request.POST:
         form = DireccionForm(request.POST)
         if form.is_valid():
-            direccion = form.cleaned_data['direccion']
-            location = geocode_address(direccion)
+            direccion = u'%s %s' % (form.cleaned_data['direccion'], form.cleaned_data['ciudad'])
+	    location = geocode_address(direccion)
             if location:
                 latitude, longitude = location
                 inmuebles = get_inmuebles(longitude, latitude)
