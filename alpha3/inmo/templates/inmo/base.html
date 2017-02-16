@@ -14,7 +14,7 @@
     <body>
 	<div class="page-header">
 		<h1><a href="{% url 'main' %}">Broker21</a></h1>
-	    <div>
+<!--	    <div>
     		Usuario: <b>{{ user }}</b>
     		{% if user.is_anonymous %}
     		<a href="{% url 'login' %}">(login)</a>
@@ -22,15 +22,11 @@
     		<a href="{% url 'logout' %}">(logout)</a>
     		{% endif %}
 	    </div>
-
+-->
 	</div>
-	<div class="content container">
-		<div class="row">
-			<div class="col-md-8">
+	<div class="page-body">
 				{% block content %}
 				{% endblock %}
-			</div>
-		</div>
 	</div>
     </body>
 </html>

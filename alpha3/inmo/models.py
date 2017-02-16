@@ -54,23 +54,38 @@ class Barrio(models.Model):
 
 class Inmueble(models.Model):
     creador = models.ForeignKey('auth.User')
-    titulo = models.CharField(max_length=60, blank=False)
-    descripcion = models.CharField(max_length=20, null=True, blank=True)
-    banos = models.CharField(max_length=5, null=True, blank=True)
-    habitaciones = models.CharField(max_length=5, null=True, blank=True)
-    metros_terreno = models.CharField(max_length=5, null=True, blank=True)
-    metros_cubiertos = models.CharField(max_length=5, null=True, blank=True)
+
     email = models.EmailField(null=True, blank=False)
     info = models.TextField(null=True, blank=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_publicacion = models.DateTimeField(blank=True, null=True)
+
+    titulo = models.CharField(max_length=60, blank=False)
+    descripcion = models.CharField(max_length=20, null=True, blank=True)
+
     direccion = models.CharField(max_length=150, blank=False)
-    location = models.PointField(u"longitude/latitude", geography=True, blank=True, null=True)    
-    gis = models.GeoManager()
-    objects = models.Manager()
+    calle = models.CharField(max_length=150, blank=False)
+    altura = models.CharField(max_length=6, blank=False)
     pais = models.ForeignKey(Pais, on_delete=models.CASCADE)
     ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE)
     barrio = models.ForeignKey(Barrio, on_delete=models.CASCADE)
+
+    metros_terreno = models.CharField(max_length=5, null=True, blank=True)
+    metros_cubiertos = models.CharField(max_length=5, null=True, blank=True)
+    antiguedad = models.CharField(max_length=2, blank=False)
+
+    banos = models.CharField(max_length=5, null=True, blank=True)
+    habitaciones = models.CharField(max_length=5, null=True, blank=True)
+    ambientes = models.CharField(max_length=2, blank=False)
+    plantas = models.CharField(max_length=2, blank=False)
+    pileta = models.CharField(max_length=2, blank=False)
+    cochera = models.CharField(max_length=2, blank=False)
+    patio = models.CharField(max_length=2, blank=False)
+
+    precio = models.CharField(max_length=10, blank=False)
+    location = models.PointField(u"longitude/latitude", geography=True, blank=True, null=True)    
+    gis = models.GeoManager()
+    objects = models.Manager()
     slug = AutoSlugField(populate_from='titulo', max_length=255)
     uuid = ext_fields.UUIDField(auto=True)
 

@@ -1,18 +1,65 @@
 .page-header {
-        background-color: #006000;
+        background-color: #FFFFFF;
         margin-top: 0;
         padding: 10px 10px 10px 30px;
 	}
 
 body {
-        padding-left: 0px;
+	padding-left: 0px;
     }
 
-h1 a {
-        color: #BBBBBB;
+h1 a{
+	color: #FF0000;
+	font-family: Georgia;
+	font-size: 10vmin;
+	font-weight: bold;
     }
 
+h2 a{
+	display: ;
+	color: #000000;
+	font-family: Helvetica;
+	font-size: 2vmin;
+	font-weight: bold;
+	text-align: ;
+	vertical-align: middle;
+	margin-left: 0px;
+	margin-top: 0px;
+    }
 
+img.logo {
+	display: block;
+	max-width: 40vw;
+	height: auto;
+	margin: auto;
+    }
+
+.tb1 {
+	display: block;
+	border: 0px solid #AAAAAA;
+	border-radius: 6px;
+	height: 25px;
+	width: 16vw;
+	background-color: #EEEEEE;
+	margin: auto;
+	margin-top: 8;
+
+    }
+
+.btn { 
+	display: block;
+	margin: auto;
+	margin-top: 10;
+	height: 35px;
+	width: 16vw;
+	border-radius: 12px;
+	background-color: #F54F3F;
+	color: #FFFFFF;
+	font-weight: ;
+	font-family: Helvetica;
+	font-size: 1.5vw;
+	vertical-align: middle;
+    }
 
 #map { 
     width: 100%;

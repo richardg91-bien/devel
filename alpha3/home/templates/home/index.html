@@ -1,0 +1,19 @@
+{% extends 'inmo/base.html' %}
+
+{% block content %}
+
+
+    {% if user.is_anonymous %}
+    <p><a href="{% url 'signup' %}">Registro</a></p>
+    <p><a href="{% url 'login' %}">Ingreso</a></p>
+    {% else %}
+    <p><a href="{% url 'main' %}">Home</a></p>
+    <p><a href="{% url 'buscador' %}">Buscador</a></p>
+    <p><a href="{% url 'alta_inmueble' %}">Alta</a></p>
+    <p><a href="{% url 'logout' %}">Salir</a></p>
+        
+{% endif %}
+
+
+
+{% endblock %}

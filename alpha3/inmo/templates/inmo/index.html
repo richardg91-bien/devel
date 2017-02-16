@@ -1,4 +1,4 @@
-{% extends 'inmo/base.html' %}
+{% extends 'inmo/base2.html' %}
 
 {% block content %}
 
@@ -10,7 +10,8 @@
     <p><a href="{% url 'main' %}">Home</a></p>
     <p><a href="{% url 'buscador' %}">Buscador</a></p>
     <p><a href="{% url 'alta_inmueble' %}">Alta</a></p>
-    {% endif %}
+    <p><a href="{% url 'logout' %}">Salir</a></p>        
+{% endif %}
 
 
 

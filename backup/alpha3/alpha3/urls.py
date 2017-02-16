@@ -15,8 +15,24 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from inmo.views import buscador, inmuebles_list, signup, inmueble_detail, alta_inmueble, get_ciudades 
+from home.views import index
+from inmo.models import Inmueble
+from django.conf import settings
+from django.contrib.auth.views import login, logout
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'',include('inmo.urls')),
+#   url(r'',include('inmo.urls')),
+#   url(r'^$', views.main, name='main'),
+    url(r'^$', index, name='main'),                   
+    url(r'^inmueble/listado/$', inmuebles_list, name='listado'),
+    url(r'^buscador$', buscador, name='buscador'),
+    url(r'^signup$', signup, name='signup'),
+    url(r'^login$', login, {'template_name': 'inmo/login.html'}, name='login'),
+    url(r'^logout$', logout, {'template_name': 'inmo/logout.html'}, name='logout'),
+    url(r'^inmueble/(?P<inmueble_id>[0-9]+)/$', inmueble_detail, name='inmueble_detail'),
+    url(r'^inmueble/alta/$', alta_inmueble, name='alta_inmueble'),
+    url(r'^ciudad/listado/$', get_ciudades, name='ciudad_listado')
 ]
